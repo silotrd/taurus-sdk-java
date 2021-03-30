@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly("org.projectlombok:lombok:1.18.4")
+    annotationProcessor("org.projectlombok:lombok:1.18.4")
+    testCompileOnly("org.projectlombok:lombok:1.18.4")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.4")
+//    implementation 'cn.hutool:hutool-all:5.3.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
