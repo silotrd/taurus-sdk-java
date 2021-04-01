@@ -22,20 +22,6 @@ public class DisbursementServiceTest {
     }
 
     @Test
-    public void testGetById() throws IOException {
-        Long disbursementId = 1353544152879497217L;
-        TaurusBaseVo<DisbursementVo> responseVo = DisbursementService.getById(disbursementId);
-        DisbursementVo disbursementVo = responseVo.getData();
-        Assert.assertEquals(responseVo.getCode(), successCode);
-        Assert.assertEquals(disbursementVo.getDisbursementId(), disbursementId);
-
-        Long invalidDisbursementId = 1373843417495793666L;
-        Integer notFoundCode = 12001;
-        TaurusBaseVo<DisbursementVo> notFoundResponseVo = DisbursementService.getById(invalidDisbursementId);
-        Assert.assertEquals(notFoundResponseVo.getCode(), notFoundCode);
-    }
-
-    @Test
     public void testCreate() throws IOException {
         String externalId = "1341802490800852001";
         BigDecimal amount = new BigDecimal("10000");
@@ -49,6 +35,20 @@ public class DisbursementServiceTest {
         DisbursementVo disbursementVo = responseVo.getData();
         Assert.assertEquals(responseVo.getCode(), successCode);
         Assert.assertEquals(disbursementVo.getStatus(), "PENDING");
+    }
+
+    @Test
+    public void testGetById() throws IOException {
+        Long disbursementId = 1353544152879497217L;
+        TaurusBaseVo<DisbursementVo> responseVo = DisbursementService.getById(disbursementId);
+        DisbursementVo disbursementVo = responseVo.getData();
+        Assert.assertEquals(responseVo.getCode(), successCode);
+        Assert.assertEquals(disbursementVo.getDisbursementId(), disbursementId);
+
+        Long invalidDisbursementId = 1373843417495793666L;
+        Integer notFoundCode = 12001;
+        TaurusBaseVo<DisbursementVo> notFoundResponseVo = DisbursementService.getById(invalidDisbursementId);
+        Assert.assertEquals(notFoundResponseVo.getCode(), notFoundCode);
     }
 
     @Test

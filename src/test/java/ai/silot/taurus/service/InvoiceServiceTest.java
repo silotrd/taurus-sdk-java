@@ -22,20 +22,6 @@ public class InvoiceServiceTest {
     }
 
     @Test
-    public void testGetById() throws IOException {
-        Long invoiceId = 1373843417495793665L;
-        TaurusBaseVo<InvoiceVo> responseVo = InvoiceService.getById(invoiceId);
-        InvoiceVo invoiceVo = responseVo.getData();
-        Assert.assertEquals(responseVo.getCode(), successCode);
-        Assert.assertEquals(invoiceVo.getInvoiceId(), invoiceId);
-
-        Long invalidInvoiceId = 1373843417495793666L;
-        Integer notFoundCode = 11001;
-        TaurusBaseVo<InvoiceVo> notFoundResponseVo = InvoiceService.getById(invalidInvoiceId);
-        Assert.assertEquals(notFoundResponseVo.getCode(), notFoundCode);
-    }
-
-    @Test
     public void testCreate() throws IOException {
         String externalId = "523452303483";
         BigDecimal amount = new BigDecimal(16566);
@@ -48,6 +34,20 @@ public class InvoiceServiceTest {
         InvoiceVo invoiceVo = responseVo.getData();
         Assert.assertEquals(responseVo.getCode(), successCode);
         Assert.assertEquals(invoiceVo.getStatus(), "UNPAID");
+    }
+
+    @Test
+    public void testGetById() throws IOException {
+        Long invoiceId = 1373843417495793665L;
+        TaurusBaseVo<InvoiceVo> responseVo = InvoiceService.getById(invoiceId);
+        InvoiceVo invoiceVo = responseVo.getData();
+        Assert.assertEquals(responseVo.getCode(), successCode);
+        Assert.assertEquals(invoiceVo.getInvoiceId(), invoiceId);
+
+        Long invalidInvoiceId = 1373843417495793666L;
+        Integer notFoundCode = 11001;
+        TaurusBaseVo<InvoiceVo> notFoundResponseVo = InvoiceService.getById(invalidInvoiceId);
+        Assert.assertEquals(notFoundResponseVo.getCode(), notFoundCode);
     }
 
     @Test

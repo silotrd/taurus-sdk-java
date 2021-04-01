@@ -9,3 +9,7 @@
 *.iml
 *.ipr
 /out/
+
+### Sensitive data ###
+/publish.gradle
+/secret.gpg

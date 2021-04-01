@@ -2,11 +2,12 @@ package ai.silot.taurus.model.disbursement;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class DisbursementVo {
+public class DisbursementVo implements Serializable {
 
     private Long disbursementId;
 

@@ -1,9 +1,14 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+    id 'signing'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+apply from: './publish.gradle'
+
+group 'ai.silot.taurus'
+//version '1.0.0-SNAPSHOT'
+version '1.0.0'
 
 repositories {
     mavenCentral()
@@ -15,6 +20,72 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.4")
     testCompileOnly("org.projectlombok:lombok:1.18.4")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.4")
-//    implementation 'cn.hutool:hutool-all:5.3.1'
+
     implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = "sources"
+}
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
+}
+//https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+            pom {
+                name = "Taurus SDK"
+                description = "Help you to integrate Taurus easily."
+                url = "https://github.com/silotrd/taurus-sdk-java"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        name = "xiaochun"
+                        email = "xiaochunliu@silot.ai"
+                    }
+                }
+                scm {
+                    url = "https://github.com/silotrd/taurus-sdk-java"
+                    connection = "scm:git:https://github.com/silotrd/taurus-sdk-java.git"
+                    developerConnection = "scm:git:https://github.com/silotrd/taurus-sdk-java.git"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = sonatypeUsername
+                password = sonatypePassword
+            }
+        }
+//        // snapshot
+//        maven {
+//            url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+//            credentials {
+//                username = sonatypeUsername
+//                password = sonatypePassword
+//            }
+//        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    options.addStringOption("charset", "UTF-8")
 }
