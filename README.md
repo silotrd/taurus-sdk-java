@@ -1,13 +1,24 @@
 # Taurus Java SDK 
+<p align="center">
+	<a target="_blank" href="https://services.gradle.org/distributions/">
+		<img src="https://img.shields.io/badge/license-Apache 2-blue.svg" />
+	</a>
+	<a target="_blank" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">
+		<img src="https://img.shields.io/badge/JDK-8+-green.svg" />
+	</a>
+	<a target="_blank" href="https://services.gradle.org/distributions/">
+		<img src="https://img.shields.io/badge/Gradle-6.3-green.svg" />
+	</a>
+</p>
 
-## 简介
-这个SDK是对Taurus接口的一个封装, 只需要简单的配置, 就可以调用Taurus的接口,让你更快捷的接入Taurus.
+## Introduction
+This library is the abstraction of Taurus API for access from applications written with Java, which enable you to acces Taurus with quick and easy manner
 
-### Taurus接口文档
-接口文档: http://k8s-azure.silot.tech:40015/
+### Taurus API Document
+API Documentation: https://taurus-docs.silot.tech/
 
-## 安装
-### Maven
+## Installation
+### With Maven
 ```
 <dependency>
   <groupId>ai.silot.taurus</groupId>
@@ -19,13 +30,14 @@
 ```
 implementation 'ai.silot.taurus:taurus-sdk-java:1.0.0'
 ```
-### 非Maven项目
-自行下载jar包
+### Without Maven
+Please download the jar package through the link below
 
 https://repo1.maven.org/maven2/ai/silot/taurus/taurus-sdk-java/1.0.0/
 
-## 使用
-查看 [Taurus接口文档](http://k8s-azure.silot.tech:40015/), 拿到你的API Key以及对应环境的服务器域名.
+## How to use
+Check [Taurus API Document](https://taurus-docs.silot.tech/), Please obtain ```API Key``` and endpoints of correspoinding environment.
+
 ```java
 public class Example {
     public static void main(String[] args) {
@@ -44,5 +56,4 @@ public class Example {
     }
 }
 ```
-更多示例请查看 [https://github.com/silotrd/taurus-sdk-java-example/tree/main/src/main/java/ai/silot/taurus/example](https://github.com/silotrd/taurus-sdk-java-example/tree/main/src/main/java/ai/silot/taurus/example)
-
+For more examples, please check [https://github.com/silotrd/taurus-sdk-java/tree/main/src/test/java/ai/silot/taurus/service](https://github.com/silotrd/taurus-sdk-java/tree/main/src/test/java/ai/silot/taurus/service)
